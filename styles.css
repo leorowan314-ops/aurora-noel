@@ -686,6 +686,15 @@ button { font-family: inherit; }
   letter-spacing: 0.05em;
   color: var(--muted-2);
 }
+.start-note.file-note { display: none; }
+body.file-mode .start-note.file-note {
+  display: block;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(150, 190, 255, 0.12);
+  color: rgba(226, 178, 120, 0.72);
+}
+body.file-mode #btnStartGesture { opacity: 0.55; }
 .start-footer {
   position: absolute;
   bottom: 26px;
