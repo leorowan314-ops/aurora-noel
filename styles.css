@@ -187,6 +187,10 @@ button { font-family: inherit; }
   text-align: center;
 }
 
+/* 手机上星河里的小卡片：不显示手写 caption，白边收窄 */
+.photo-card.tiny .photo-caption { display: none; }
+.photo-card.tiny { padding: 3px 3px 5px; border-radius: 2px; }
+
 .photo-card::before {
   content: "";
   position: absolute;
@@ -905,17 +909,20 @@ output { font-size: 11px; color: var(--gold); font-variant-numeric: tabular-nums
 }
 @media (max-width: 760px) {
   .hud { pointer-events: none; }
-  .hud-left { top: 16px; left: 16px; max-width: 74vw; }
+  .hud-left { top: 14px; left: 16px; max-width: calc(100vw - 152px); }
   .hud-right { top: 16px; right: 14px; gap: 10px; }
-  .headline { font-size: clamp(34px, 9vw, 46px); }
+  .headline { font-size: clamp(26px, 7.6vw, 36px); letter-spacing: 0; margin-bottom: 10px; }
   .countdown-label { font-size: 9px; }
-  .cd-cell { min-width: 39px; padding: 6px 4px 4px; }
+  .countdown { gap: 4px; }
+  .cd-cell { min-width: 34px; padding: 5px 3px 4px; }
+  .cd-cell b { font-size: 16px; }
+  .cd-sep { font-size: 13px; margin-top: 9px; }
   .player { width: 190px; padding: 5px 10px 5px 5px; margin-bottom: 10px; }
   .player-title { font-size: 10.5px; }
-  .greeting { font-size: 18px; }
+  .greeting { font-size: 17px; }
   .greeting-sub { font-size: 10px; max-width: 68vw; }
   .tagline { display: none; }
-  .toolbar { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; max-width: 132px; }
+  .toolbar { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; max-width: 92px; }
   .tool { width: 36px; height: 36px; }
   .tool::after { display: none; }
   .hint { font-size: 10px; padding: 8px 12px; }
