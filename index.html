@@ -132,7 +132,7 @@
       <div class="start-emblem">❄</div>
       <div class="start-kicker">A LITTLE WINTER GIFT · 2026</div>
       <h2 class="start-title">Merry<br /><em>Christmas</em></h2>
-      <p class="start-sub">一片会回应你手势的极光星夜<br />十八张照片，一棵圣诞树，和想对你说的话</p>
+      <p class="start-sub">一片会回应你手势的极光星夜<br /><span id="startPhotoCount">十八张照片</span>，一棵圣诞树，和想对你说的话</p>
       <div class="start-actions">
         <button class="btn btn-primary" id="btnStartGesture" type="button">
           <span class="btn-ico">🖐</span> 开启手势魔法
@@ -148,7 +148,7 @@
         想用手势 → 双击同目录的 <b>启动.bat</b>；想发给别人 → 用在线网址。
       </p>
     </div>
-    <div class="start-footer">Macau · Disneyland · 松阳 — 2026 冬</div>
+    <div class="start-footer" id="startFooter">Macau · Disneyland · 松阳 — 2026 冬</div>
   </section>
 
   <!-- ─────────── 设置抽屉 ─────────── -->
@@ -237,7 +237,7 @@
         <button class="btn btn-ghost small" id="btnRestartCamera" type="button">重新开启手势</button>
       </div>
 
-      <p class="settings-note">
+      <p class="settings-note" id="settingsNote">
         照片与祝福语都不会上传，只存在这台电脑上。<br />
         想换照片：点右上角「添加照片」，或把新照片放进 <code>assets/photos</code> 再刷新。
       </p>
@@ -274,7 +274,7 @@
         <li><b>轻点照片</b><span>放大到屏幕中央，慢慢看；再点一下或按 Esc 关闭</span></li>
         <li><b>手势模式</b><span>手掌靠近镜头即绽放，捏合指尖可以拾起照片</span></li>
       </ul>
-      <p class="help-keys">空格 星河 · F 全屏 · M 音乐 · S 设置 · U 添加照片 · Esc 关闭面板</p>
+      <p class="help-keys" id="helpKeys">空格 星河 · F 全屏 · M 音乐 · S 设置 · U 添加照片 · Esc 关闭面板</p>
     </div>
   </section>
 
@@ -298,6 +298,20 @@
   if (location.protocol === "file:") {
     document.write('<script src="assets/photos/manifest-file.js"><\/script>');
   }
+</script>
+<script>
+  // 单文件版资源较大，页面会先出现、app 稍后才就绪；这期间点「开始」先记下来，就绪后自动进入。
+  window.__pendingStart = null;
+  document.addEventListener(
+    "click",
+    function (e) {
+      var b = e.target && e.target.closest ? e.target.closest("#btnStartGesture, #btnStartPointer") : null;
+      if (b && !window.__xmasApp) {
+        window.__pendingStart = b.id === "btnStartGesture" ? "gesture" : "pointer";
+      }
+    },
+    true
+  );
 </script>
 <script src="dist/app.js"></script>
 </body>
