@@ -1125,3 +1125,22 @@ body.cam-collapsed #camDockCanvas { display: none; }
 }
 
 body.ui-hidden .cam-dock { display: none !important; }
+
+/* ========== 照片视觉交给 WebGL 的 3D 金属相框（src/frames.js）==========
+   DOM 卡片仍然负责命中 / 拖拽 / 手势，但自身不再画边框和照片，
+   避免出现“看起来像没有相框”的细边 CSS 假框。 */
+.photo-card,
+.photo-card.hover,
+.photo-card.grabbed {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  filter: none !important;
+}
+.photo-card .photo-inner {
+  background: none !important;
+  box-shadow: none !important;
+}
+.photo-card img { opacity: 0 !important; }
+.photo-card::before { display: none !important; }
+.photo-card .photo-caption { display: none !important; }

@@ -292,6 +292,13 @@
   <video id="webcam" class="webcam-video" playsinline muted></video>
 </div>
 <script src="assets/photos/manifest.js"></script>
+<script>
+  // 双击本地文件（file://）打开时，额外加载内联了照片 data URI 的清单：
+  // 否则 WebGL 会把 file:// 的图片当成 cross-origin，纹理上传报错、照片显示不出来。
+  if (location.protocol === "file:") {
+    document.write('<script src="assets/photos/manifest-file.js"><\/script>');
+  }
+</script>
 <script src="dist/app.js"></script>
 </body>
 </html>
