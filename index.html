@@ -116,6 +116,15 @@
     </div>
   </div>
 
+  <!-- ─────────── 手势模式：右下角摄像头预览 ─────────── -->
+  <div id="camDock" class="cam-dock" aria-hidden="true">
+    <canvas id="camDockCanvas" width="160" height="120"></canvas>
+    <div class="cam-dock-meta">
+      <span id="camDockStatus">正在唤醒手势…</span>
+      <button id="camDockToggle" class="cam-dock-toggle" type="button" aria-label="收起摄像头预览">–</button>
+    </div>
+  </div>
+
   <!-- ─────────── 开始引导 ─────────── -->
   <section id="startOverlay" class="overlay start-overlay">
     <div class="start-glow"></div>

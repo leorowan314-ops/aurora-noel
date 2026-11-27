@@ -109,16 +109,28 @@ button { font-family: inherit; }
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--w, 118px);
-  padding: 5px 5px 17px;
+  width: var(--w, 92px);
+  padding: 3px;
   margin: 0;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #fffdf7 0%, #fbf6ec 72%, #f2ead9 100%);
+  border-radius: 2px;
+  /* 金属相框：拉丝金 + 高光内圈，照片本身不加任何玻璃反光 */
+  background:
+    linear-gradient(
+      145deg,
+      #fff8e6 0%,
+      #e2c689 14%,
+      #fffdf2 30%,
+      #c69a4d 46%,
+      #fff3cf 62%,
+      #b0873c 80%,
+      #f7e6bd 100%
+    );
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 0 0 1px rgba(12, 22, 40, 0.06),
-    0 18px 38px -16px rgba(0, 0, 0, 0.75),
-    0 0 26px rgba(120, 200, 255, 0.10);
+    0 0 0 1px rgba(255, 252, 238, 0.92) inset,
+    0 0 0 2px rgba(30, 20, 8, 0.5) inset,
+    0 8px 18px -10px rgba(0, 0, 0, 0.75),
+    0 0 20px rgba(255, 218, 148, 0.52),
+    0 0 54px rgba(255, 196, 110, 0.22);
   transform:
     translate3d(var(--x), var(--y), 0)
     translate(-50%, -50%)
@@ -144,10 +156,14 @@ button { font-family: inherit; }
   position: relative;
   overflow: hidden;
   border-radius: 1px;
-  background-color: #1a2233;
+  background-color: #121a28;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 0 0 1px rgba(20, 30, 50, 0.10) inset;
+  /* 深色衬边 + 抛光内圈 */
+  box-shadow:
+    0 0 0 2px #0d1420,
+    0 0 0 3px rgba(255, 236, 190, 0.26),
+    0 0 10px rgba(0, 0, 0, 0.55) inset;
   aspect-ratio: var(--ar, 0.75);
 }
 .photo-card img {
@@ -161,75 +177,36 @@ button { font-family: inherit; }
 }
 .photo-card img.loaded { opacity: 1; }
 
-/* 照片玻璃反光 */
-.photo-card .photo-inner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    118deg,
-    rgba(255, 255, 255, 0.30) 0%,
-    rgba(255, 255, 255, 0.06) 26%,
-    rgba(255, 255, 255, 0) 45%,
-    rgba(255, 255, 255, 0.04) 70%,
-    rgba(255, 255, 255, 0.12) 100%
-  );
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
+/* 相框内的照片保持干净：不要玻璃反光层、不要发灰 */
+.photo-card .photo-inner::after { display: none; }
 
-.photo-card .photo-caption {
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 4px;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 9.5px;
-  letter-spacing: 0.04em;
-  color: rgba(53, 45, 36, 0.68);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
+.photo-card .photo-caption { display: none; }
 
-/* 手机上星河里的小卡片：不显示手写 caption，白边收窄 */
-.photo-card.tiny .photo-caption { display: none; }
-.photo-card.tiny { padding: 3px 3px 5px; border-radius: 2px; }
+/* 手机上星河里的小卡片：细边框 */
+.photo-card.tiny { padding: 2px; border-radius: 1px; }
 
-.photo-card::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -5px;
-  width: 26px;
-  height: 9px;
-  transform: translateX(-50%) rotate(-2deg);
-  background: linear-gradient(180deg, rgba(255, 236, 200, 0.55), rgba(255, 226, 180, 0.22));
-  border-radius: 1px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  opacity: 0.9;
-}
+.photo-card::before { display: none; }
 
 .photo-card.hover {
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 0 0 1px rgba(255, 226, 160, 0.55),
-    0 22px 46px -16px rgba(0, 0, 0, 0.8),
-    0 0 36px rgba(255, 214, 140, 0.28);
+    0 0 0 1px rgba(255, 252, 240, 0.9) inset,
+    0 0 0 2px rgba(24, 16, 6, 0.42) inset,
+    0 0 12px rgba(255, 236, 190, 0.55),
+    0 16px 30px -14px rgba(0, 0, 0, 0.8),
+    0 0 46px rgba(255, 206, 128, 0.45),
+    0 0 90px rgba(255, 190, 96, 0.22);
 }
 
 .photo-card.grabbed {
   z-index: 9000 !important;
   cursor: grabbing;
-  filter: saturate(1.12) brightness(1.04);
+  filter: saturate(1.05) brightness(1.03);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.95) inset,
-    0 0 0 1px rgba(255, 230, 176, 0.95),
-    0 30px 70px -20px rgba(0, 0, 0, 0.92),
-    0 0 60px rgba(255, 213, 135, 0.55),
-    0 0 120px rgba(150, 220, 255, 0.22);
+    0 0 0 1px rgba(255, 252, 240, 0.98) inset,
+    0 0 0 2px rgba(24, 16, 6, 0.5) inset,
+    0 24px 52px -18px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(255, 226, 160, 0.62),
+    0 0 110px rgba(255, 200, 120, 0.34);
 }
 
 .photo-card.settling { transition: opacity 0.9s ease, box-shadow 0.35s ease, filter 0.35s ease; }
@@ -1090,3 +1067,61 @@ body.ui-hidden .help-panel { display: none; }
   .help-card { width: min(92vw, 420px); padding: 18px 18px 16px; }
   .photo-viewer-close { top: 14px; right: 14px; }
 }
+
+/* ---------------- 手势模式：右下角摄像头预览 ---------------- */
+.cam-dock {
+  position: fixed;
+  right: 18px;
+  bottom: 92px;
+  z-index: 46;
+  display: none;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(9, 16, 29, 0.74);
+  border: 1px solid rgba(160, 200, 255, 0.18);
+  box-shadow: 0 14px 34px -18px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: width 0.25s ease, padding 0.25s ease;
+}
+body.mode-gesture .cam-dock { display: block; }
+body.cam-collapsed .cam-dock { padding: 5px 8px; }
+body.cam-collapsed #camDockCanvas { display: none; }
+#camDockCanvas {
+  display: block;
+  width: 120px;
+  height: 90px;
+  border-radius: 7px;
+  background: #060b14;
+  transform: scaleX(-1);
+  opacity: 0.9;
+}
+.cam-dock-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: rgba(214, 232, 255, 0.72);
+}
+.cam-dock-toggle {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 5px;
+  padding: 0;
+  line-height: 1;
+  font-size: 12px;
+  color: rgba(220, 236, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+.cam-dock-toggle:hover { background: rgba(255, 255, 255, 0.16); }
+@media (max-width: 760px) {
+  .cam-dock { right: 12px; bottom: 158px; }
+  #camDockCanvas { width: 96px; height: 72px; }
+}
+
+body.ui-hidden .cam-dock { display: none !important; }
