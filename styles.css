@@ -110,27 +110,27 @@ button { font-family: inherit; }
   left: 0;
   top: 0;
   width: var(--w, 92px);
-  padding: 3px;
+  padding: 2px;
   margin: 0;
   border-radius: 2px;
-  /* 金属相框：拉丝金 + 高光内圈，照片本身不加任何玻璃反光 */
+  /* 金属相框：细亮金边 + 高光内圈，照片本身不加任何玻璃反光 */
   background:
     linear-gradient(
       145deg,
-      #fff8e6 0%,
-      #e2c689 14%,
-      #fffdf2 30%,
-      #c69a4d 46%,
-      #fff3cf 62%,
-      #b0873c 80%,
-      #f7e6bd 100%
+      #fffdf6 0%,
+      #f2dfb2 12%,
+      #fffefa 26%,
+      #d9b26a 44%,
+      #fff9e6 58%,
+      #cfa45c 76%,
+      #fffdf7 100%
     );
   box-shadow:
-    0 0 0 1px rgba(255, 252, 238, 0.92) inset,
-    0 0 0 2px rgba(30, 20, 8, 0.5) inset,
+    0 0 0 1px rgba(255, 255, 250, 0.95) inset,
+    0 0 0 2px rgba(90, 66, 26, 0.35) inset,
     0 8px 18px -10px rgba(0, 0, 0, 0.75),
-    0 0 20px rgba(255, 218, 148, 0.52),
-    0 0 54px rgba(255, 196, 110, 0.22);
+    0 0 16px rgba(255, 230, 172, 0.62),
+    0 0 48px rgba(255, 200, 120, 0.28);
   transform:
     translate3d(var(--x), var(--y), 0)
     translate(-50%, -50%)
@@ -159,11 +159,11 @@ button { font-family: inherit; }
   background-color: #121a28;
   background-size: cover;
   background-position: center;
-  /* 深色衬边 + 抛光内圈 */
+  /* 很细的深色衬边 + 抛光内圈 */
   box-shadow:
-    0 0 0 2px #0d1420,
-    0 0 0 3px rgba(255, 236, 190, 0.26),
-    0 0 10px rgba(0, 0, 0, 0.55) inset;
+    0 0 0 1px rgba(18, 12, 6, 0.62),
+    0 0 0 2px rgba(255, 244, 214, 0.4),
+    0 0 8px rgba(0, 0, 0, 0.45) inset;
   aspect-ratio: var(--ar, 0.75);
 }
 .photo-card img {
